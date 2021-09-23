@@ -1,10 +1,12 @@
 <template>
-  <div class="todo-list">
-    <h3>Todo List</h3>
+  <div class="todo-list" :class="mode">
+    <Toogle :mode="mode" @toggle="$emit('toggle')"/>
+    <h3>To Do List</h3>
     <input
       type="text"
       class="input-new-item"
       v-on:keyup.enter="addNewItemToList"
+      placeholder="Adicionar tarefa"
     />
 
     <ul>
@@ -21,11 +23,14 @@
 
 <script>
 import ListItem from "./ListItem";
+import Toogle from './Toogle.vue';
 
 export default {
   name: "TodoList",
+  props: ['mode'],
   components: {
     ListItem,
+    Toogle
   },
   data() {
     return {
@@ -60,16 +65,44 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .todo-list {
-  width: 500px;
+  width: 600px;
   margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgb(247, 247, 247);
+  transition: background 0.3s ease-in-out;
+}
+
+.dark .todo-list {
+  background: #2e4153;
+}
+
+
+.todo-list h3 {
+  font-size: 30px;
 }
 
 .input-new-item {
   width: 80%;
   height: 30px;
+  background: transparent;
+  color: #2c3e506e;
+  font-size: 17px;
+  border: 0;
+  border-bottom: 2px solid rgba(255, 0, 85, 0.568);
+}
+
+.input-new-item:focus {
+  color: #2c3e50;
+  box-shadow: 0;
+  outline: 0;
+  border-bottom: 2px solid rgb(255, 0, 85);
+}
+
+.dark .todo-list .input-new-item:focus {
+  color: rgb(238, 238, 238);
 }
 
 ul {
@@ -78,5 +111,6 @@ ul {
   width: 80%;
   margin: 20px auto;
   text-align: left;
+  font-size: 20px;
 }
 </style>
