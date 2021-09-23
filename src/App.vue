@@ -32,6 +32,14 @@ export default {
 </script>
 
 <style>
+:root {
+  --text-dark: #2c3e50;
+  --light-dark: #2e4153;
+  --dark: rgb(22, 32, 44);
+  --light-grey: rgb(247, 247, 247);
+  --medium-grey: rgb(238, 238, 238);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -41,8 +49,8 @@ export default {
 .app {
   width: 100vw;
   min-height: 100vh;
-  background: rgb(238, 238, 238);
-  color: #2c3e50;
+  background: var(--medium-grey);
+  color: var(--text-dark);
   padding: 60px;
   transition: background 0.3s ease-in-out;
 }
@@ -55,7 +63,7 @@ export default {
 }
 
 .dark {
-  background: rgb(22, 32, 44);
-  color: rgb(238, 238, 238);
+  background: var(--dark);
+  color: var(--medium-grey);
 }
 </style>

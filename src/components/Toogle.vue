@@ -8,24 +8,46 @@
       />
       <span class="toggler round"></span>
     </label>
+    <span class="mode-icon" v-html="modeIcon" @click="modeItem()"></span>
   </div>
 </template>
 
 <script>
+import feather from "feather-icons";
+
 export default {
   name: "Toogle",
-  props: ['mode']
+  props: ['mode'],
+  computed: {
+    modeIcon () {
+      if (this.mode === "dark") {
+        return feather.icons.sun.toSvg({ width: 17, color: "rgb(247, 247, 247)" });
+      } else {
+        return feather.icons.moon.toSvg({ width: 17, color: "rgb(22, 32, 44)" });
+      }
+    }
+  }
 }
 </script>
 
 <style>
+.toggle-wrapper{
+  display: flex;
+  text-align: center;
+  justify-content: right;
+}
+
+.mode-icon {
+  display: inline-block;
+  margin: 18px 0;
+}
+
 .toggle {
   position: relative;
   display: inline-block;
   width: 40px;
   height: 20px;
-  margin: 20px;
-  left: 42%;
+  margin: 20px 5px;
 }
 
 .toggle input {
@@ -41,7 +63,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgb(22, 32, 44);
+  background: var(--dark);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -53,17 +75,17 @@ export default {
   width: 12px;
   left: 4px;
   bottom: 4px;
-  background: rgb(238, 238, 238);
+  background: var(--light-grey);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .toggler {
-  background: #2196f3;
+  background: var(--medium-grey);
 }
 
-input:focus + .toggler {
-  box-shadow: 0 0 2px #2196f3;
+input:checked + .toggler::before {
+  background: var(--light-dark);
 }
 
 input:checked + .toggler::before {

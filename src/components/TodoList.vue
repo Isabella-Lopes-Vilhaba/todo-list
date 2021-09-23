@@ -71,12 +71,12 @@ export default {
   margin: auto;
   padding: 20px;
   border-radius: 5px;
-  background: rgb(247, 247, 247);
+  background: var(--light-grey);
   transition: background 0.3s ease-in-out;
 }
 
 .dark .todo-list {
-  background: #2e4153;
+  background: var(--light-dark);
 }
 
 
@@ -102,7 +102,7 @@ export default {
 }
 
 .dark .todo-list .input-new-item:focus {
-  color: rgb(238, 238, 238);
+  color: var(--medium-grey);
 }
 
 ul {
